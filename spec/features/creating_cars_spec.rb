@@ -26,8 +26,9 @@ feature 'Creating Cars' do
     fill_in 'Price', with: '3700'
     
     click_button 'Create Car'
-    save_and_open_page
-    expect(page).to have_content("#{car3.make}	#{car.model}	#{car.year}	$#{car.price}")
+    # save_and_open_page
+    expect(page).to have_content("#{car.make}	#{car.model}	#{car.year}
+$#{ActiveSupport::NumberHelper::number_to_currency(car.price,{precision: 2,unit: ''})}")
     expect(page).to have_content('2001 Lexus RX300 created')
     expect(page).to have_content('$3,700.00')
   end
