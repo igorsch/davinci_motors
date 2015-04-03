@@ -1,6 +1,6 @@
 <%= link_to 'New Car', new_car_path %>
 
-<table border="1"  WIDTH="50%"   CELLPADDING="10" CELLSPACING="3">
+<table  border="1"  WIDTH="50%"   CELLPADDING="10" CELLSPACING="3">
   <tr bgcolor="#adff2f">
     <th>Make</th>
     <th>Model</th>
@@ -16,7 +16,7 @@
       <td><%= car.year %></td>
       <td><%= number_to_currency(car.price) %></td>
       <td><%= link_to('Edit', edit_car_path(car))%></td>
-      <td bgcolor="#ffd700"><%= link_to('Claim', claim_car_path(car))%></td>
+      <td bgcolor="#f08080"><%= link_to('Unclaim', unclaim_car_path(car))%></td>
     </tr>
   <% end %>
 </table>

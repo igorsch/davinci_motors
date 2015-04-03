@@ -1,8 +1,8 @@
 class CarsController < ApplicationController
-  before_action :find_car, only: [:edit, :update]
+  before_action :find_car, only: [:edit, :update, :claim, :unclaim]
 
   def index
-    @cars = Car.all
+    @cars = Car.where(user_id: nil).all
   end
 
   def new
@@ -10,6 +10,24 @@ class CarsController < ApplicationController
   end
 
   def edit
+  end
+
+  def claim
+    @car.user = current_user
+    @car.save
+    redirect_to root_path,
+      notice: "#{@car.make} #{@car.model} has been moved to your inventory."
+  end
+
+  def unclaim
+    @car.user = nil
+    @car.save
+    redirect_to mycars_path,
+      notice: "#{@car.make} #{@car.model} has been removed from your inventory."
+  end
+  
+  def mycars
+    @cars = Car.where(user_id: current_user).all
   end
 
   def update

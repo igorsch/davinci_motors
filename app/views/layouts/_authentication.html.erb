@@ -1,7 +1,11 @@
 <% if current_user %>
-  Signed in as <%= current_user.email %>
+  Signed in as <%= current_user.email %><br>
   <%= link_to 'Logout', logout_path, method: :delete %>
+  <%= link_to 'My Cars', mycars_path %>
+  <%= link_to 'Inventory', root_path %>
+  <br>
 <% else %>
   <%= link_to 'Signup', new_user_path %>
   <%= link_to 'Login', login_path %>
+  <br>
 <% end %>
